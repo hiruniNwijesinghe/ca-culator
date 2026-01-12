@@ -4,225 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    
-    <!--desin part-->
-    <style>
-        body {
-           background: url(' img2.jpg');
-           background-size: cover;
-            background-color: #222;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-top: 20px;
-        }
-
-        #calculator {
-            display: inline-block;
-            background: #333;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        #display {
-            width: 100%;
-            height: 50px;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-align: right;
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-            background: #444;
-            color: white;
-        }
-
-        button {
-            width: 60px;
-            height: 60px;
-            margin: 10px;
-            font-size: 1.2rem;
-            background: #555;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        button:hover {
-            background: #777;
-            transform: scale(1.1);
-        }
-
-        button:active {
-            background: #999;
-        }
-
-        .row {
-            display: flex;
-            justify-content: center;
-        }
-      
-    </style>
+    <!-- Link CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     
     <h1> Calculator Project </h1>
-    
-    
 
-     <div id="calculator">
-         <h4 id = "display"> </h4>
-        
+    <div id="calculator">
+        <h4 id="display"></h4>
+
         <div class="row">
-    <button id = "fn0" onclick = fn0()> 0 </button>
-    <button id = "fn1" onclick = fn1()> 1 </button>
-    <button id = "fn2" onclick = fn2()> 2 </button>
-    <button id = "fn3" onclick = fn3()> 3 </button>
-         </div>
-    
-      <div class="row">
-    <button id = "fn4" onclick = fn4()> 4 </button>
-    <button id = "fn5" onclick = fn5()> 5 </button>
-    <button id = "fn6" onclick = fn6()> 6 </button>
-    <button id = "fn7" onclick = fn7()> 7 </button>
-      </div>
+            <button id="fn0" onclick="fn0()">0</button>
+            <button id="fn1" onclick="fn1()">1</button>
+            <button id="fn2" onclick="fn2()">2</button>
+            <button id="fn3" onclick="fn3()">3</button>
+        </div>
 
-       <div class="row">
-    <button id = "fn8" onclick = fn8()> 8 </button>
-    <button id = "fn9" onclick = fn9()> 9 </button>
-    <button id = "eraser" onclick = "feraser()"> E </button>
-    <button id = "ad" onclick = "addition()"> + </button>
-       </div>
-
-    
         <div class="row">
-    <button id = "mn" onclick = "mn()"> - </button>
-    <button id = "ml" onclick = "ml()"> * </button>
-    <button id = "dv" onclick = "dv()"> / </button>
-    <button id = "eq" onclick = "eq()">  = </button>
-    <button id = "ac" onclick = "AC()"> AC </button>
-       </div>
+            <button id="fn4" onclick="fn4()">4</button>
+            <button id="fn5" onclick="fn5()">5</button>
+            <button id="fn6" onclick="fn6()">6</button>
+            <button id="fn7" onclick="fn7()">7</button>
+        </div>
 
-       </div>
+        <div class="row">
+            <button id="fn8" onclick="fn8()">8</button>
+            <button id="fn9" onclick="fn9()">9</button>
+            <button id="eraser" onclick="feraser()">E</button>
+            <button id="ad" onclick="addition()">+</button>
+        </div>
 
-       <!--js part-->
-<script>
-    function fn0(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 0;
-}
+        <div class="row">
+            <button id="mn" onclick="mn()">-</button>
+            <button id="ml" onclick="ml()">*</button>
+            <button id="dv" onclick="dv()">/</button>
+            <button id="eq" onclick="eq()">=</button>
+            <button id="ac" onclick="AC()">AC</button>
+        </div>
+    </div>
 
-function fn1(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 1;
-}
+    <!-- JavaScript -->
+    <script>
+        function fn0(){ document.getElementById("display").innerHTML += 0; }
+        function fn1(){ document.getElementById("display").innerHTML += 1; }
+        function fn2(){ document.getElementById("display").innerHTML += 2; }
+        function fn3(){ document.getElementById("display").innerHTML += 3; }
+        function fn4(){ document.getElementById("display").innerHTML += 4; }
+        function fn5(){ document.getElementById("display").innerHTML += 5; }
+        function fn6(){ document.getElementById("display").innerHTML += 6; }
+        function fn7(){ document.getElementById("display").innerHTML += 7; }
+        function fn8(){ document.getElementById("display").innerHTML += 8; }
+        function fn9(){ document.getElementById("display").innerHTML += 9; }
 
-function fn2(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 2;
-}
+        function feraser(){
+            let previous = document.getElementById("display").innerHTML;
+            document.getElementById("display").innerHTML = previous.slice(0, -1);
+        }
 
-function fn3(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 3;
-}
+        let firstsave;
+        let op;
 
-function fn4(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 4;
-}
+        function addition(){
+            firstsave = document.getElementById("display").innerHTML;
+            document.getElementById("display").innerHTML = 0;
+            op = 1;
+        }
 
-function fn5(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 5;
-}
+        function mn(){
+            firstsave = document.getElementById("display").innerHTML;
+            document.getElementById("display").innerHTML = 0;
+            op = 2;
+        }
 
-function fn6(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 6;
-}
+        function ml(){
+            firstsave = document.getElementById("display").innerHTML;
+            document.getElementById("display").innerHTML = 0;
+            op = 3;
+        }
 
-function fn7(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 7;
-}
+        function dv(){
+            firstsave = document.getElementById("display").innerHTML;
+            document.getElementById("display").innerHTML = 0;
+            op = 4;
+        }
 
-function fn8(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 8;
-}
+        function AC(){
+            document.getElementById("display").innerHTML = 0;
+        }
 
-function fn9(){
-    let previous = document.getElementById("display").innerHTML;
-    document.getElementById("display").innerHTML = previous + 9;
-}
-
-/*eraser number*/
-function feraser(){
-     let previous = document.getElementById("display").innerHTML;  /*denat display eke thiyn tik gannawa*/
-     let eraser = previous.slice(0, -1)
-     document.getElementById("display").innerHTML = eraser
-}
-
-let firstsave;
-let op;
-
-function addition(){
-    firstsave  = document.getElementById("display").innerHTML;  /*denat display eke thiyn tik gannawa*/
-    document.getElementById("display").innerHTML = 0; /*display wen tik delete krnw*/
-    op = 1;
-}
-
-function mn(){
-    firstsave  = document.getElementById("display").innerHTML;  /*denat display eke thiyn tik gannawa*/
-    document.getElementById("display").innerHTML = 0; /*display wen tik delete krnw*/
-    op = 2;
-}
-
-function ml(){
-    firstsave  = document.getElementById("display").innerHTML;  /*denat display eke thiyn tik gannawa*/
-    document.getElementById("display").innerHTML = 0; /*display wen tik delete krnw*/
-    op = 3;
-}
-
-function dv(){
-    firstsave  = document.getElementById("display").innerHTML;  /*denat display eke thiyn tik gannawa*/
-    document.getElementById("display").innerHTML = 0; /*display wen tik delete krnw*/
-    op = 4;
-}
-
-function AC(){
-    firstsave  = document.getElementById("display").innerHTML;  /*denat display eke thiyn tik gannawa*/
-    document.getElementById("display").innerHTML = 0; /*display wen tik delete krnw*/
-    op = 5;
-}
-
-function eq(){
-    let secondSave = document.getElementById("display").innerHTML;  /*denat display eke thiyn tik gannawa*/
-    if(op == 1){
-        document.getElementById("display").innerHTML = parseInt(firstsave)+parseInt(secondSave);
-    }else if(op == 2){
-        document.getElementById("display").innerHTML = parseInt(firstsave)- parseInt(secondSave);
-    }else if(op == 3){
-        document.getElementById("display").innerHTML = parseInt(firstsave) * parseInt(secondSave);
-    }else if(op == 4){
-        document.getElementById("display").innerHTML = parseInt(firstsave) / parseInt(secondSave);
-    }else{
-        document.getElementById("display").innerHTML = Invalid;
-    }
-}
-
-</script>
+        function eq(){
+            let secondSave = document.getElementById("display").innerHTML;
+            if(op == 1){
+                document.getElementById("display").innerHTML = parseInt(firstsave) + parseInt(secondSave);
+            }else if(op == 2){
+                document.getElementById("display").innerHTML = parseInt(firstsave) - parseInt(secondSave);
+            }else if(op == 3){
+                document.getElementById("display").innerHTML = parseInt(firstsave) * parseInt(secondSave);
+            }else if(op == 4){
+                document.getElementById("display").innerHTML = parseInt(firstsave) / parseInt(secondSave);
+            }
+        }
+    </script>
 
 </body>
-
 </html>
